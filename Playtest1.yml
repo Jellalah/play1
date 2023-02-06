@@ -1,0 +1,19 @@
+---
+- hosts: gns3-try
+  connection: network_cli
+  gather_facts: no
+
+  vars:
+    ansible_network_os: routeros
+    ansible_user: admin
+    ansible_ssh_pass: test
+
+  tasks:
+
+  - name: Adding vlans
+    routeros_command:
+      commands:
+        - /ip address print
+        - /ip add add add=18.90.20.7/30 interface=ether5
+
+#        - :for x from 10 to 20 do={/interface vlan add vlan-id=$x name="VLAN_$x" interface=ether8}
